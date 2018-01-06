@@ -1,0 +1,31 @@
+# Mainteiner: GrayJack <gr41.j4ck@gmail.com>
+
+pkgname=sierrabreeze-kde-git
+pkgver=r24.a56126b
+pkgrel=1
+pkgdesc="OSX-like window decoration for KDE Plasma written in C++"
+arch=('x86_64')
+url="https://github.com/ishovkun/SierraBreeze"
+license=('GPL2')
+depends=('kwin')
+makedepends=('git' 'cmake' 'extra-cmake-modules')
+source=("git+${url}.git")
+sha256sums=('SKIP')
+_gitname=SierraBreeze
+
+pkgver() {
+   cd ${srcdir}/${_gitname}
+   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+  
+}
+
+build() {
+   cd ${srcdir}/${_gitname}
+   mkdir build && cd build
+   cmake .. -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release \
+            -DKDE_INSTALL_LIBDIR=lib -DBUILD_TESTING=OFF -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+}
+
+package() {
+   make -C ${srcdir}/${_gitname}/build DESTDIR="$pkgdir" install
+}
