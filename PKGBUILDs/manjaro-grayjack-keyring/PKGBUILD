@@ -21,6 +21,6 @@ sha256sums=('be365bf70dd788d8487fb83b560ca952363421df1006a6a11673ca378a217944'
             '87d7d846e492b71399158f2d16cd07e887d3067559e6dade29685addbab98c20')
 
 package() {
-	cd "${srcdir}"
-	make PREFIX=/usr DESTDIR=${pkgdir} install
-} 
+    cd "${srcdir}"
+    make PREFIX=/usr DESTDIR=${pkgdir} install
+}
