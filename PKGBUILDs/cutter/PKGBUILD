@@ -1,10 +1,10 @@
 # Mainteiner: GrayJack <gr41.j4ck@gmail.com>
 
 pkgname=cutter-radare
-pkgver=1.1
+pkgver=1.2
 pkgrel=1
 pkgdesc="Qt and C++ GUI for radare2 reverse engineering framework"
-_pkgradarever=2.2.0
+_pkgradarever=2.3.0
 url="https://github.com/radareorg/cutter"
 arch=('x86_64')
 license=('GPL3')
@@ -14,8 +14,8 @@ provides=('cutter-radare')
 conflicts=('radare2-cutter' 'radare2-cutter-git')
 source=("https://github.com/radareorg/cutter/archive/v${pkgver}.tar.gz"
         "https://github.com/radare/radare2/archive/${_pkgradarever}.tar.gz")
-sha256sums=('ed1be7778f6a733343d4628a0ba2598f6c3f521e08c6d45289a58c2313e2297b'
-            '99ba2a7c4aae99ae0c70ce0423fa6ed2344fb94a45bc83bf6c8716e2b3e7f1bf')
+sha256sums=('5b9e27dd54849744e9ac0075137fecabe4bed4e82ad220c2c0e0a348c0665783'
+            '50a5797f168b10e02bd9c4d4ff61fe0459e1b79710c27405c94753694d6b9b3c')
 
 prepare() {
     cp -R "${srcdir}/radare2-${_pkgradarever}/" "${srcdir}/radare2"

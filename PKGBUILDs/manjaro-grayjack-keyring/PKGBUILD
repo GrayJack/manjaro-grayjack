@@ -1,10 +1,10 @@
 # Based on the file created for Arch Linux by:
 # Pierre Schmitz <pierre@archlinux.de>
 
-# Maintainer : Eric Shimizu <gr41.j4ck@gmail.com>
+# Maintainer : GrayJack <gr41.j4ck@gmail.com>
 
 pkgname=manjaro-grayjack-keyring
-pkgver=20180105
+pkgver=20180207
 pkgrel=1
 pkgdesc='Manjaro-Grayjack PGP keyring'
 arch=('any')
@@ -16,9 +16,9 @@ source=('Makefile'
         'manjaro-grayjack-revoked'
         'manjaro-grayjack-trusted')
 sha256sums=('be365bf70dd788d8487fb83b560ca952363421df1006a6a11673ca378a217944'
-            '981de6587ad558c10444104659e7061d20f13db1bd4002dbcc3c5764c456076e'
+            '9cd0730d203e3149333c1b76dd00bc55b0a22c2a71c76f82a88a642ac53e4358'
             'e16f1596201850fd4a63680b27f603cb64e67176159be3d8ed78a4403fdb1700'
-            '87d7d846e492b71399158f2d16cd07e887d3067559e6dade29685addbab98c20')
+            '134a41711fb506a506f7ae535c10ca6f0bbaad129e8d33911c7a4b5bc10a490c')
 
 package() {
     cd "${srcdir}"

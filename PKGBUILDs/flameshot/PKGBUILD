@@ -2,7 +2,7 @@
 
 pkgname=flameshot
 pkgver=0.5.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Powerful yet simple to use screenshot software"
 arch=('x86_64')
 url="https://github.com/lupoDharkael/flameshot"
@@ -10,6 +10,7 @@ license=('GPL')
 depends=('qt5-base')
 makedepends=('make' 'qt5-tools')
 provides=('flameshot')
+conflicts=('flameshot-git')
 source=("https://github.com/lupoDharkael/flameshot/archive/v${pkgver}.tar.gz")
 sha256sums=('32d593c14c37286d9f64873c4ef9a07eb084723c92b2280d5c22152547c1e3f0')
 
