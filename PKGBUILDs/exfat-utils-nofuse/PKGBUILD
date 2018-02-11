@@ -16,17 +16,17 @@ source=(exfat-${pkgver}.tar.gz::https://github.com/relan/exfat/archive/v${pkgver
 sha512sums=('f90b1eff5c51ff93377f82f2838d214e0670a4a8c54fb7c0ec8ce743971b35867975568b8886e8fae8e320706419cf4e39d0852e68350c9b999cf0be4c5f88fc')
 
 build() {
-  cd exfat-${pkgver}
+    cd exfat-${pkgver}
 
-  # exclude fuse directory
-  sed -i 's/fuse label mkfs/label mkfs/' Makefile.am
+    # exclude fuse directory
+    sed -i 's/fuse label mkfs/label mkfs/' Makefile.am
 
-  autoreconf -i
-  ./configure --prefix=/usr --sbindir=/usr/bin
-  make CCFLAGS="${CFLAGS} -std=c99" LINKFLAGS="${LDFLAGS}"
+    autoreconf -i
+    ./configure --prefix=/usr --sbindir=/usr/bin
+    make CCFLAGS="${CFLAGS} -std=c99" LINKFLAGS="${LDFLAGS}"
 }
 
 package() {
-  cd exfat-${pkgver}
-  make DESTDIR="${pkgdir}" install
+    cd exfat-${pkgver}
+    make DESTDIR="${pkgdir}" install
 }
