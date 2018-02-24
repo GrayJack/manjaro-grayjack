@@ -1,0 +1,87 @@
+dist: trusty
+sudo: required
+services:
+  - docker
+
+language: cpp
+
+branches:
+  only:
+    - master
+
+cache:
+    directories:
+      - $HOME/.cache
+ 
+env:
+    global:
+      # Environment variables for packpack
+      - PRODUCT=flameshot
+      - VERSION=0.5.1
+      - RELEASE=1
+      - ARCH=x86_64
+#      - DOCKER_REPO=packpack/packpack
+      - DOCKER_REPO=vitzy/packpack
+
+#The actual list of distribution is available on
+#https://hub.docker.com/r/packpack/packpack/tags/
+#https://hub.docker.com/r/vitzy/packpack/tags/
+matrix:
+    include:
+        - os: linux
+          env: OS=fedora DIST=26
+        - os: linux
+          env: OS=fedora DIST=27
+        - os: linux
+          # trusty: only for build & test & AppImage
+          # 14.04 LTS;  Qt version is 5.2.1, flameshot not support
+          env: OS=ubuntu DIST=trusty
+        - os: linux
+          # 16.04 LTS
+          env: OS=ubuntu DIST=xenial
+        - os: linux
+          # 17.10
+          env: OS=ubuntu DIST=artful
+        - os: linux
+          # 8
+          env: OS=debian DIST=jessie
+        - os: linux
+          # 9
+          env: OS=debian DIST=stretch 
+        - os: osx
+          compiler: clang
+          osx_image: xcode9.2
+
+before_install:
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" && "${DIST}" == "trusty" ]]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" && "${DIST}" == "trusty" ]]; then sudo apt-get -qq update ; fi
+
+before_script:
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" && "${DIST}" == "trusty" ]]; then chmod +x .travis_linux.sh ; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then chmod +x .travis_macos.sh ; fi
+
+install:
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" && "${DIST}" == "trusty" ]]; then sudo apt-get install -qq git; sudo apt-get install -qq build-essential ; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" && "${DIST}" == "trusty" ]]; then sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install openssl libssl-dev ; fi
+  # - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install libgl1-mesa-dev ; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" && "${DIST}" == "trusty" ]]; then sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install tree ; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" && "${DIST}" == "trusty" ]]; then sudo apt-get install -qq gcc-4.9; sudo apt-get install -qq g++-4.9 ; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" && "${DIST}" == "trusty" ]]; then sudo apt-get install -qq git ; fi
+
+script:
+ # - git submodule update --init --recursive
+ # - git describe --long
+  - if [[ "${TRAVIS_OS_NAME}" == "linux" ]]; then bash ./.travis_linux.sh ; fi
+  - if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then bash ./.travis_macos.sh ; fi
+  - pwd && ls   
+
+# deploy:
+#    # Deploy packages to Github Release
+#    provider: releases
+#    api_key: "GITHUB ENCYPTED OAUTH TOKEN"
+#    file_glob: true
+#    file: dist/*.{deb,rpm,AppImage,dmg}
+#    skip_cleanup: true
+#    on:
+#      tags: true
+#      branch: master
