@@ -1,0 +1,37 @@
+
+
+pkgname=sdfat-dkms-git
+_gitname=kernel-sdfat
+pkgver=8.f82a5df
+pkgrel=1
+pkgdesc='Linux kernel module for fat12/16/32 and also exfat - use with DKMS'
+url='https://github.com/cryptomilk/kernel-sdfat'
+arch=('any')
+license=('GPL2')
+depends=('dkms' 'exfat-utils-nofuse')
+makedepends=('git')
+options=('!strip')
+#conflicts=()
+source=("git+https://github.com/cryptomilk/$_gitname.git"
+        "dkms.conf")
+sha256sums=('SKIP'
+            'SKIP')
+
+pkgver() {
+    cd ${_gitname}
+    echo $(git rev-list --count master).$(git rev-parse --short master)
+}
+
+prepare() {
+    # update PACKAGE_VERSION to pkgver
+    sed -i "s/PACKAGE_VERSION=\"[-._ 0-9a-zA-Z]*\"/PACKAGE_VERSION=\"${pkgver}\"/g" ${srcdir}/dkms.conf
+}
+
+package() {
+    rm -fr ${_gitname}/{.git,.gitignore}
+
+    mkdir -p ${pkgdir}/usr/src
+    cp -r ${_gitname} ${pkgdir}/usr/src/sdfat-${pkgver}
+
+    install -Dm644 ${srcdir}/dkms.conf ${pkgdir}/usr/src/sdfat-${pkgver}/dkms.conf
+}
