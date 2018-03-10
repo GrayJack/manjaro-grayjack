@@ -1,10 +1,10 @@
 # Mainteiner: GrayJack <gr41.j4ck@gmail.com>
 
 pkgname=cutter-radare
-pkgver=1.2
+pkgver=1.3
 pkgrel=1
 pkgdesc="Qt and C++ GUI for radare2 reverse engineering framework"
-_pkgradarever=2.3.0
+_pkgradarever=2.4.0
 url="https://github.com/radareorg/cutter"
 arch=('x86_64')
 license=('GPL3')
@@ -14,8 +14,8 @@ provides=('cutter-radare')
 conflicts=('radare2-cutter' 'radare2-cutter-git')
 source=("https://github.com/radareorg/cutter/archive/v${pkgver}.tar.gz"
         "https://github.com/radare/radare2/archive/${_pkgradarever}.tar.gz")
-sha256sums=('5b9e27dd54849744e9ac0075137fecabe4bed4e82ad220c2c0e0a348c0665783'
-            '50a5797f168b10e02bd9c4d4ff61fe0459e1b79710c27405c94753694d6b9b3c')
+sha256sums=('1fee0ec58a2ad15046a9bf3c2f4b92db385db7c7af2f6a64a13f3fb8d51b2dcf'
+            'e2edef4d70c7bbbb47d04002ce9d384eb2fc9c0cd4cbfde77cda8c10cae9ff24')
 
 prepare() {
     cp -R "${srcdir}/radare2-${_pkgradarever}/" "${srcdir}/radare2"
@@ -28,14 +28,14 @@ build() {
     cd "${srcdir}/cutter-${pkgver}"
     mkdir build
     cd "build"
-    qmake ../src
-    make
+    qmake ../src/Cutter.pro
+    make -j4
 }
 
 package() {
     cd "${srcdir}/cutter-${pkgver}"
-    install -DTm 755 build/cutter "${pkgdir}/usr/bin/cutter"
-    install -DTm 644 src/cutter.desktop "${pkgdir}/usr/share/applications/cutter.desktop"
+    install -DTm 755 build/Cutter "${pkgdir}/usr/bin/cutter"
+    install -DTm 644 src/Cutter.desktop "${pkgdir}/usr/share/applications/cutter.desktop"
     install -DTm 644 src/img/cutter.svg "${pkgdir}/usr/share/icons/hicolor/scalable/apps/cutter.svg"
     install -dm755 docs/ "${pkgdir}/usr/share/doc/${pkgname}/"
     cp -a docs/* "${pkgdir}/usr/share/doc/${pkgname}/"
