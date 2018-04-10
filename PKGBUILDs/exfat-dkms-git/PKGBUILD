@@ -4,7 +4,7 @@
 
 pkgname=exfat-dkms-git
 _gitname=exfat-nofuse
-pkgver=203.0aeaced
+pkgver=205.1742a73
 pkgrel=1
 pkgdesc='Native (nofuse) kernel module for EXtendedFAT support - use with DKMS'
 url='https://github.com/GrayJack/exfat-nofuse'
