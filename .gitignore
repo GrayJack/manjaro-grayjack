@@ -1,3 +1,13 @@
-.directory
-*~
+src
+pkg
 *.old
+*.src.*
+*.tar.gz
+*.tgz
+*.run
+*.zip
+*.log
+*~
+.directory
+.AURINFO
+.lock
