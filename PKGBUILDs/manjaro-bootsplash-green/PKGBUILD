@@ -1,5 +1,5 @@
 pkgname=('bootsplash-theme-manjaro-green')
-pkgver=0.4
+pkgver=0.5
 pkgrel=1
 url="https://lists.freedesktop.org/archives/dri-devel/2017-December/160242.html"
 arch=('x86_64')
@@ -18,7 +18,7 @@ source=('bootsplash-packer'
 sha256sums=('51559d3ccfb448b03fa6439faf5869dbd0c2fbda1b5d5bf5d4ba70e60937472a'
             '0b834cfcaab302c67b913cc42928ac0e1e0889b89c3600ff86a939e64206e237'
             'f6568b09ac446239aefa9e8e60d7ed9fdecd83609467d4100688e6f26e51d37c'
-            '552337ed7d30dec29fb43ad6f8c686996f90586787f6fcf3a30297c8c6f3d7a0'
+            '880413c22681904c649848e96f043c0a1cd691604c77f1374cfee488a4c33ab4'
             '948b7a8873ba8afc29e6caa94d89446ce3bc123ec2ba4f34c9f56ae9b7310de8')
 
 build() {

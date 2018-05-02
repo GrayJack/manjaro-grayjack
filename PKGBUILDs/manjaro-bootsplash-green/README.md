@@ -3,6 +3,8 @@ Kernel Bootsplash theme for manjaro Linux using Manjaro logo.
 
 This was based on https://github.com/Blacksuan19/Bootsplash-Themes
 
+spinner.git base on circle wave by Dave Whyte on dribble.
+
 # Installation:
 
 - `git clone https://github.com/Blacksuan19/Bootsplash-Themes.git`
