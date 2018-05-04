@@ -1,0 +1,20 @@
+pkgname=cesious-theme-nodeps
+_pkgname=cesious-theme
+pkgver=0.7
+pkgrel=1
+pkgdesc="Cesious theme for awesome wm"
+arch=(any)
+url="https://github.com/Chrysostomus/$_pkgname"
+license=(MIT)
+depends=('awesome'
+	'awesome-freedesktop'
+	'lain')
+makedepends=('git')
+source=("git://github.com/Chrysostomus/$_pkgname")
+md5sums=('SKIP')
+
+package () {
+	cd "$srcdir"
+	install -dm755 $pkgdir/usr/share/awesome/themes/
+	cp -r $srcdir/$_pkgname/cesious $pkgdir/usr/share/awesome/themes/
+}
