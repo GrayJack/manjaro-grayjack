@@ -3,7 +3,7 @@
 
 pkgname=exfat-utils-nofuse
 pkgver=1.2.8
-pkgrel=1
+pkgrel=2
 pkgdesc='Utilities for the exFAT file system without fuse (to prefer exfat kernel module over fuse)'
 arch=('i686' 'x86_64')
 url='https://github.com/relan/exfat'
