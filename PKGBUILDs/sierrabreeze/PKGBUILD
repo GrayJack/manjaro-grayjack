@@ -1,7 +1,7 @@
 # Mainteiner: GrayJack <gr41.j4ck@gmail.com>
 
 pkgname=sierrabreeze-kde-git
-pkgver=r38.01d8ff2
+pkgver=r47.e1c7c2d
 pkgrel=1
 pkgdesc="OSX-like window decoration for KDE Plasma written in C++"
 arch=('x86_64')
