@@ -1,10 +1,10 @@
 # Mainteiner: GrayJack <gr41.j4ck@gmail.com>
 
 pkgname=cutter-radare
-pkgver=1.4
+pkgver=1.5
 pkgrel=2
 pkgdesc="Qt and C++ GUI for radare2 reverse engineering framework"
-_pkgradarever=2.5.0
+_pkgradarever=2.7.0
 url="https://github.com/radareorg/cutter"
 arch=('x86_64')
 license=('GPL3')
