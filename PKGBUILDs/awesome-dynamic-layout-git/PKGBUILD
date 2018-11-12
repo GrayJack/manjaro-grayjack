@@ -1,0 +1,48 @@
+_pkgname=awesome
+pkgname=${_pkgname}-dynamic-layout-git
+pkgver=4.3_alpha
+pkgrel=1
+pkgdesc='Highly configurable framework window manager. Updated docs here: https://elv13.github.io/index.html'
+arch=('i686' 'x86_64')
+url='http://awesome.naquadah.org/'
+license=('GPL2')
+depends=('cairo' 'dbus' 'gdk-pixbuf2' 'libxdg-basedir' 'libxkbcommon-x11'
+         'lua' 'lua-lgi' 'pango' 'startup-notification' 'xcb-util-cursor'
+         'xcb-util-keysyms' 'xcb-util-wm' 'xcb-util-xrm')
+makedepends=('asciidoc' 'cmake' 'docbook-xsl' 'git' 'imagemagick' 'ldoc'
+             'xmlto')
+optdepends=('rlwrap: readline support for awesome-client'
+            'dex: autostart your desktop files'
+            'vicious: widgets for the Awesome window manager')
+provides=('notification-daemon' 'awesome')
+conflicts=('awesome')
+backup=('etc/xdg/awesome/rc.lua')
+source=("$pkgname::git+https://github.com/Elv13/awesome-1.git#branch=doc_tests_and_notif")
+md5sums=('SKIP')
+
+# pkgver() {
+#   cd $pkgname
+#   git describe | sed 's/^v//;s/-/./g'
+# }
+
+prepare() {
+  mkdir -p build
+}
+
+build() {
+  cd build
+  cmake ../$pkgname \
+    -DCMAKE_BUILD_TYPE=RELEASE \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DSYSCONFDIR=/etc \
+    -DLUA_LIBRARY=/usr/lib/liblua.so.5.3
+  make
+}
+
+package() {
+  cd build
+  make DESTDIR="$pkgdir" install
+
+  install -Dm644 "$srcdir"/$pkgname/awesome.desktop \
+    "$pkgdir/usr/share/xsessions/awesome.desktop"
+}
