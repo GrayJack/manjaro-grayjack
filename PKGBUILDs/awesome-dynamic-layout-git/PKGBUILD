@@ -1,6 +1,6 @@
 _pkgname=awesome
 pkgname=${_pkgname}-dynamic-layout-git
-pkgver=4.3_alpha
+pkgver=4.4_alpha
 pkgrel=1
 pkgdesc='Highly configurable framework window manager. Updated docs here: https://elv13.github.io/index.html'
 arch=('i686' 'x86_64')
@@ -35,7 +35,7 @@ build() {
     -DCMAKE_BUILD_TYPE=RELEASE \
     -DCMAKE_INSTALL_PREFIX=/usr \
     -DSYSCONFDIR=/etc \
-    -DLUA_LIBRARY=/usr/lib/liblua.so.5.3
+    -DLUA_LIBRARY=/usr/lib/liblua.so
   make
 }
 
@@ -43,6 +43,6 @@ package() {
   cd build
   make DESTDIR="$pkgdir" install
 
-  install -Dm644 "$srcdir"/$pkgname/awesome.desktop \
+  install -Dm 644 "$srcdir"/$pkgname/awesome.desktop \
     "$pkgdir/usr/share/xsessions/awesome.desktop"
 }
