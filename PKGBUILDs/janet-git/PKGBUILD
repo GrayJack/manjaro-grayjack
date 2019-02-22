@@ -1,0 +1,42 @@
+# Maintainer: GrayJack <gr41.j4ck@gmail.com>
+
+_pkgname=janet
+pkgname=janet-git
+pkgver=r915.6d5ff43
+pkgrel=1
+pkgdesc="A Lisp dialect"
+arch=('i686' 'x86_64')
+url="https://janet-lang.org/"
+license=('MIT')
+depends=()
+makedepends=('git')
+provides=('janet')
+conflicts=('janet')
+source=("git+https://github.com/janet-lang/janet.git")
+sha256sums=('SKIP')
+
+pkgver() {
+    cd "${srcdir}/${_pkgname}"
+
+    # Get the version number.
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+    cd "${srcdir}/${_pkgname}"
+
+    sed -i s/"CFLAGS:=$(CFLAGS) -rdynamic"/""/ Makefile
+    # sed -i s/"JANET_PATH?=/usr/local/lib/janet"/"JANET_PATH?=\$(PREFIX)/lib/janet"/ Makefile
+    # sed -i s/"cp janet.1 /usr/local/share/man/man1/"/"cp janet.1 \$(PREFIX)/share/man/man1/" Makefile
+
+}
+
+build() {
+    cd "${srcdir}/${_pkgname}"
+    make CC=clang -j7
+}
+
+package() {
+    cd "${srcdir}/${_pkgname}"
+    make install
+}
