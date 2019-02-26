@@ -1,6 +1,6 @@
 _pkgname=awesome
 pkgname=${_pkgname}-dynamic-layout-git
-pkgver=4.4_alpha
+pkgver=4.5_alpha
 pkgrel=1
 pkgdesc='Highly configurable framework window manager. Updated docs here: https://elv13.github.io/index.html'
 arch=('i686' 'x86_64')
