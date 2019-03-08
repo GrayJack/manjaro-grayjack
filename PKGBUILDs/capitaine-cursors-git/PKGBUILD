@@ -2,7 +2,7 @@
 
 pkgname=capitaine-cursors-git
 _gitname=capitaine-cursors
-pkgver=r31.960f9e9
+pkgver=r32.556525a
 pkgrel=1
 pkgdesc="An x-cursor theme inspired by macOS and based on KDE Breeze"
 arch=('any')
