@@ -14,7 +14,7 @@ E0708F67A2C739A11AF06B957AA5AD4B91D622A6
 ```
 [manjaro-grayjack]
 SigLevel = Optional
-Server = https://raw.github.com/GrayJack/$repo/master/packages/
+Server = https://raw.githubusercontent.com/GrayJack/$repo/master/packages/
 ```
 * Refresh pacman database (`-Syy`) and install `manjaro-grayjack-keyring` package
 * Done!
