@@ -7,11 +7,11 @@ spinner.git base on circle wave by Dave Whyte on dribble.
 
 # Installation:
 
-- `git clone https://github.com/Blacksuan19/Bootsplash-Themes.git`
-- `cd manjaro-bootsplash-green`
+- `git clone https://github.com/GrayJack/manjaro-grayjack`
+- `cd PKGBUILDs/manjaro-bootsplash-green`
 - run `bootsplash-manjaro-green.sh` to generate STL model.
 - run `makepkg` to create Arch package and install it with `pacman -U $package_name`
 - append `bootsplash-manjaro-green` hook in the end of HOOKS string of `/etc/mkinitcpio.conf`
 - add `quiet bootsplash.bootfile=bootsplash-themes/manjaro-green/bootsplash` into `GRUB_CMDLINE_LINUX` string in `/etc/default/grub`
-- run `sudo mkinitcpio -p linux415` (or linux416)
+- run `sudo mkinitcpio -P`
 - run `sudo update-grub`
